@@ -10,6 +10,7 @@ exports.craftIndex = ( req, res ) ->
 # POST /craft
 exports.craftCreate = ( req, res ) ->
   # validate form
+  console.log req.body
   # create the craft
   # bounce to the new craft page
   res.redirect 'craft/view/123'

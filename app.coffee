@@ -21,13 +21,25 @@ app.configure ->
   app.use express.static path.join __dirname, 'public'
 
 app.configure 'development', ->
-  app.use express.errorHandler()
+  app.use express.errorHandler
+    dumpExceptions: true
+    showStack: true
+
+# routes
 
 app.get '/', routes.index
-app.get '/craft', routes.craftIndex
-app.post '/craft/create', routes.craftCreate
 
-#app.post '/craft/create', routes.craft.create
+app.get  '/crafts',          routes.craftIndex
+app.get  '/crafts/view/:id', routes.craftView
+app.post '/crafts/create',   routes.craftCreate
+
+# GET /mods
+# GET /mods/view/:id
+
+# GET /parts/
+# GET /parts/views/:id
+
+# make it so
 
 http.createServer(app).listen app.get('port'), ->
   console.log "Express server listening on port " + app.get('port')
